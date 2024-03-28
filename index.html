@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let socket = new WebSocket("ws://localhost:5000/web")
+        console.log("Attempting websocket connection..")
+
+        socket.onopen = ()=>{
+            console.log("successfully connected..")
+
+            socket.send("this is a live message")
+            
+        }
+        socket.onclose = (event)=>{
+            console.log("connecton closed")
+        }
+        socket.onerror = (error)=>{
+            console.log("error: ",error)
+        }
+        socket.onmessage = (message)=>{
+            console.log("message: ",message)
+        }
+    </script>
+</body>
+</html>
